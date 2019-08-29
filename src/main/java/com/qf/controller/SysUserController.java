@@ -101,7 +101,7 @@ public class SysUserController {
     public String memberView(){
         return "member";
     }
-    //会员用户有权访问的模块
+    //会员用户有权访问的模块11
     @RequiresPermissions(value = {"user_edit"})
     @RequestMapping("/main")
     public String main(){
