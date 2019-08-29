@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapping 映射规范
+  1、mapper.namespace书写；
+  2、resultMap 作用；
+  3、sql指令 参数（id，parametermap/type,resultMap/type）-->
+
+<mapper namespace="com.qf.mapper.AccountMapper">
+
+    <!--根据用户id查询其所拥有的银行卡的信息-->
+    <select id="findAccountByUserId" resultType="com.qf.pojo.Account">
+            SELECT a.*
+            FROM
+            tb_sys_user u,
+            tb_account a,
+            tb_user_account ua
+            WHERE
+            ua.aid=a.id AND
+            ua.uid=u.userid AND
+            u.userid=#{userId}
+    </select>
+</mapper>

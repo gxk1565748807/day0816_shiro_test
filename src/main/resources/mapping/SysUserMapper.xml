@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapping 映射规范
+  1、mapper.namespace书写；
+  2、resultMap 作用；
+  3、sql指令 参数（id，parametermap/type,resultMap/type）
+
+-->
+<mapper namespace="com.qf.mapper.SysUserMapper">
+
+    <resultMap id="sysUserMap" type="com.qf.pojo.SysUser">
+        <id property="userId" column="USERID"/>
+        <result property="loginName" column="loginName"/>
+        <result property="password" column="password"/>
+        <result property="state" column="state"/>
+        <result property="createTime" column="createTime"/>
+        <result property="realname" column="realname"/>
+    </resultMap>
+    <sql id="sysUser_colums">
+        userid,
+        loginName,
+        password,
+        state,
+        createTime,
+        realname
+    </sql>
+
+    <select id="findUserInfoByLoginName" parameterType="string" resultMap="sysUserMap">
+        select
+        <include refid="sysUser_colums"/>
+        from
+        tb_sys_user u
+        where
+        u.loginName = #{loginName}
+    </select>
+    <!--根据用户名查询其权限-->
+    <select id="findPermissionsByUserName" parameterType="string" resultType="sysPermission">
+    select p.*
+        from
+         tb_sys_user        u,
+         tb_sys_role        r,
+         tb_sys_permission  p,
+         tb_user_role       ur,
+         tb_role_permission rp
+    where
+        u.userid = ur.user_id
+        and ur.role_id = r.role_id
+        and r.role_id = rp.role_id
+        and rp.permission_id = p.permission_id
+        and u.loginName=#{loginName}
+    </select>
+    <!--添加新用户-->
+    <insert id="saveUser" parameterType="sysUser">
+        insert into tb_sys_user values(#{userId},#{loginName},(#{password}),#{state},#{createTime},#{realname})
+    </insert>
+    <!--获取最大id值-->
+    <select id="getMaxUserId" parameterType="int" resultType="int">
+        select max(userid) from tb_sys_user
+    </select>
+    <!--查询所有用户信息-->
+    <select id="loadAll"  resultType="sysUser">
+        select * from tb_sys_user
+    </select>
+    <!--根据用户id删除用户对象信息-->
+    <delete id="delUserByUserId" parameterType="int">
+        delete from tb_sys_user where userid=#{userId}
+    </delete>
+    <!--修改当前用户信息-->
+    <update id="updateByUser" parameterType="int">
+        update tb_sys_user
+        <set>loginName=#{loginName},password=#{password},state=#{state},createTime=#{createTime},realname=#{realname}</set>
+        <where>userid=#{userId}</where>
+    </update>
+    <!--根据用户id查询其所有信息-->
+    <select id="loadUserByUserId" parameterType="sysUser" resultType="sysUser">
+        select * from tb_sys_user
+        <where>userid=#{userId}</where>
+    </select>
+    <!--根据登录名查询其所有信息-->
+    <select id="loadUserByLoginName" resultType="sysUser">
+        select * from tb_sys_user
+        <where>loginName=#{loginName}</where>
+    </select>
+
+    <!--<insert id="addUser" parameterType="int">
+        insert into tb_sys_user values(#{userid},#{loginName},#{password},#{state},#{createTime},#{realname})
+    </insert>-->
+    <!--获取所有数据信息-->
+    <select id="getTotalCount" resultType="int">
+        select count(userId) from tb_sys_user
+    </select>
+</mapper>
