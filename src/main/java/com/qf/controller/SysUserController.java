@@ -28,10 +28,10 @@ public class SysUserController {
     @Autowired
     private SysUserService userService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+/*    @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String showLoginForm(){
         return "login";
-    }
+    }*/
 
 
     @RequestMapping(value = "/dealLogin",method = RequestMethod.POST)
@@ -112,7 +112,7 @@ public class SysUserController {
     @RequestMapping("/saveUser")
     public String saveUser(SysUser sysUser){
         sysUser.setUserId(userService.getMaxUserId()+1);
-        boolean b = userService.saveUser(sysUser);
+        boolean b = userService.addUser(sysUser);
         return b?"redirect:loadUser":"error";
     }
 

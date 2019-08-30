@@ -97,12 +97,15 @@
 				<div class="list-group-item active">
 					我的账户<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
 				</div>
+                <div class="list-group-item " style="cursor:pointer;" th:id="${session.userId}" onclick="loadInvesByUserId(this.id)">
+                    我的投资<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
+                </div>
 			</div>
 		</div>
             <div class="col-sm-9 col-md-9 column">
               <ul id="myTab" style="" class="nav nav-pills" role="tablist">
                 <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">我的账户</a></li>
-                <li role="presentation"><a href="#profile">商城首页</a></li>
+                <li role="presentation"><a href="memberView">商城首页</a></li>
               </ul>
               <div id="myTabContent" class="tab-content" style="margin-top:10px;">
                   <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
@@ -150,10 +153,10 @@
                 <div class="col-md-12 column">
                     <div id="footer">
                         <div class="footerNav">
-                             <a rel="nofollow" href="http://www.qf.com">关于我们</a> | <a rel="nofollow" href="http://www.qf.com">服务条款</a> | <a rel="nofollow" href="http://www.qf.com">免责声明</a> | <a rel="nofollow" href="http://www.qf.com">网站地图</a> | <a rel="nofollow" href="http://www.qf.com">联系我们</a>
+                             <a rel="nofollow" href="http://www.baidu.com">关于我们</a> | <a rel="nofollow" href="http://www.baidu.com">服务条款</a> | <a rel="nofollow" href="http://www.baidu.com">免责声明</a> | <a rel="nofollow" href="http://www.baidu.com">网站地图</a> | <a rel="nofollow" href="http://www.baidu.com">联系我们</a>
                         </div>
                         <div class="copyRight">
-                            Copyright ?2017-2017qf.com 版权所有
+                            Copyright ?2017-2017jqw.com 版权所有
                         </div>
                     </div>
                     
@@ -165,14 +168,18 @@
 	<script src="script/docs.min.js"></script>
     <script src="script/back-to-top.js"></script>
 	<script>
-$('#myTab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-$('#myTab1 a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+
+        function loadInvesByUserId(userId){
+            location.href="loadInvesByUserId?userId="+userId;
+        }
+        $('#myTab a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        })
+        $('#myTab1 a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        })
 	</script>
   </body>
 </html>

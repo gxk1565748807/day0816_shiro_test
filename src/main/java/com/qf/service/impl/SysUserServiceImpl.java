@@ -29,14 +29,14 @@ public class SysUserServiceImpl implements SysUserService {
         List<SysPermission> permissions = userMapper.findPermissionsByUserName(loginName);
         return permissions;
     }
-    //向数据库添加新的用户信息
+/*    //向数据库添加新的用户信息
     @Override
     public boolean saveUser(SysUser sysUser) {
         ByteSource salt = ByteSource.Util.bytes("abc");
         String s = new SimpleHash("MD5", sysUser.getPassword(), salt, 1024).toString();
         int i = userMapper.saveUser(sysUser);
         return i>0?true:false;
-    }
+    }*/
     //获取用户最大id
     @Override
     public int getMaxUserId() {
@@ -81,13 +81,7 @@ public class SysUserServiceImpl implements SysUserService {
         int i = userMapper.addUser(sysUser);
         return i>0?true:false;
     }
-/*    //根据数据行数计算页数
-    @Override
-    public int calMaxPage(int rows) {
-        int count = userMapper.getTotalCount();
-        return count%rows==0?count/rows:count/rows+1;
 
-    }*/
 
 
 }

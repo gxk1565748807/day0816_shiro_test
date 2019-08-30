@@ -52,7 +52,7 @@
         and u.loginName=#{loginName}
     </select>
     <!--添加新用户-->
-    <insert id="saveUser" parameterType="sysUser">
+    <insert id="addUser" parameterType="sysUser">
         insert into tb_sys_user values(#{userId},#{loginName},(#{password}),#{state},#{createTime},#{realname})
     </insert>
     <!--获取最大id值-->

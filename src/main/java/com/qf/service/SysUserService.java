@@ -23,12 +23,16 @@ public interface SysUserService {
      */
     public List<SysPermission> findPermissionsByLoginName(String loginName);
 
-    /**
+/*
+    */
+/**
      * 向数据库添加新用户
      * @param sysUser
      * @return
-     */
+     *//*
+
     public boolean saveUser(SysUser sysUser);
+*/
 
     /**
      * 获取用户最大id值

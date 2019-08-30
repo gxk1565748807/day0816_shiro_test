@@ -25,4 +25,10 @@ public class ViewController {
     public String exsView(){
         return "exs";
     }
+
+
+    @RequestMapping("/invest")
+    public String invest(){
+        return "invest";
+    }
 }

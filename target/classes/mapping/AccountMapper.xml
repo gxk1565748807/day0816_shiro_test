@@ -21,4 +21,15 @@
             ua.uid=u.userid AND
             u.userid=#{userId}
     </select>
+
+    <select id="loadInvestmentByUserId" resultType="com.qf.pojo.Investment">
+        SELECT i.*
+        FROM
+        tb_sys_user u,
+        tb_investment i
+        WHERE
+        u.userid=i.id
+        AND
+        u.userid=#{userId}
+    </select>
 </mapper>
