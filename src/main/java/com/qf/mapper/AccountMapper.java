@@ -4,6 +4,8 @@ package com.qf.mapper;
 import com.qf.pojo.Account;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface AccountMapper {
 
@@ -13,5 +15,5 @@ public interface AccountMapper {
      * @param userId
      * @return
      */
-    public Account findAccountByUserId(int userId);
+    public List<Account> findAccountByUserId(int userId);
 }

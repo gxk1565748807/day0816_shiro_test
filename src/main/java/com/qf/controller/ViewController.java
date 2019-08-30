@@ -16,13 +16,13 @@ public class ViewController {
         return "reg";
     }
 
-    @RequestMapping("mineView")
-    private String mineView(){
+    @RequestMapping("/mine")
+    private String mine(){
         return "mine";
     }
 
-    @RequestMapping("saveView")
-    public String saveView(){
-        return "add";
+    @RequestMapping("/exs")
+    public String exsView(){
+        return "exs";
     }
 }

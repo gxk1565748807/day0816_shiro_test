@@ -62,7 +62,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user" th:text="${session.loginName}" th:value="${session.userId}"></i><span class="caret" ></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="member.html"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
+                                <li><a href="memberView"><i class="glyphicon glyphicon-scale"></i> 会员中心</a></li>
                                 <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 消息</a></li>
                                 <li class="divider"></li>
                                 <li><a href="indexView"><i class="glyphicon glyphicon-off"></i> 退出系统</a></li>
@@ -95,8 +95,8 @@
                 <div class="list-group-item active">
                     资产总览<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
                 </div>
-                <div class="list-group-item " style="cursor:pointer;" onclick="window.location.href='mine'">
-                    我的众筹<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
+                <div class="list-group-item " style="cursor:pointer;" th:id="${session.userId}" onclick="loadByUserId(this.id)">
+                    我的账户<span class="badge"><i class="glyphicon glyphicon-chevron-right"></i></span>
                 </div>
             </div>
         </div>
@@ -143,19 +143,9 @@
 <script src="script/back-to-top.js"></script>
 <script src="script/echarts.js"></script>
 <script>
-/*    $(document).ready(function () {
-        $.ajax({
-            url:"dealLogin",
-            type:"post",
-            success:function (data) {
-                $(".welcome")[0].innerHTML=data+"欢迎您！";
-            },
-            error:function (data) {
-                alert("系统错误！");
-            }
-        })
-    })*/
-
+    function loadByUserId(userId){
+        location.href="loadByUserId?userId="+userId;
+    }
     $('#myTab a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')

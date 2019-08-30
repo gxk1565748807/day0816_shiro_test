@@ -2,6 +2,8 @@ package com.qf.service;
 
 import com.qf.pojo.Account;
 
+import java.util.List;
+
 public interface AccountService {
 
 
@@ -10,5 +12,5 @@ public interface AccountService {
      * @param userId
      * @return
      */
-    public Account findAccountByUserId(int userId);
+    public List<Account> findAccountByUserId(int userId);
 }
